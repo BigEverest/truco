@@ -1,0 +1,74 @@
+#cartasJog{
+	margin: 0 auto;
+	
+}
+img.imgJogAtual{
+	
+	padding:8px;
+	min-width:100px;
+	min-height:130px;
+	max-height:50%;
+	max-width:50%;
+	
+}	
+#cartaWin
+{
+	background-color: green;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-right-width: 10px;
+    padding-right: 10px;
+}
+img.imgMesa{
+	min-width:100px;
+	min-height:130px;
+	max-height:50%;
+	max-width:50%;
+	
+}
+font.placarTimeAtual{
+	color:green;
+	
+}
+font.placarTimeRival{
+	color:red;
+}
+div.msgGrande{
+	padding-top:50px;
+	font-size:40px;
+	text-align:center;
+}
+div.creditos
+{
+	color:gray;
+	text-align:left;
+	font-size:20px;
+}
+#mesa{
+			
+	margin: 0 auto;
+	text-align:center;
+}
+font.msgAvissoGrande{
+	font-size:40px;
+	text-align:center;
+	display:block;
+	
+}
+div.BlankSpace400
+{
+	margin-top:400px;
+}
+#confirmarTruco{
+	display:none;
+}
+input.bt_importante{
+				font-size:40px;
+				margin: 0 auto;
+				text-align: center;
+				width:80%;
+				margin-top:20px;
+				margin-right:10%;
+				margin-left:10%;
+}

@@ -1,0 +1,6 @@
+problema de empatar 2 vezes
+logs das jogadas
+implementar nome dos jogadores na mesa
+javascript no index.php
+entarSala.php
+
