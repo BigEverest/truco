@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="stylesheet" type="text/css" href="layoutDoJogo.css">
-		<script src="mesa.js"></script>
+		<script src="lobby.js"></script>
 	</head>
 	<body>
 	
@@ -14,6 +14,7 @@
 			
 			$sala=isset($_GET["sala"])?$_GET["sala"]:"";
 			$nome=isset($_GET["nome"])?$_GET["nome"]:"";
+			$id=isset($_GET["id"])?$_GET["id"]:"";
 			if(verificaSala($sala)==0)
 				return;
 			
@@ -23,7 +24,9 @@
 			echo "<div class='msgGrande'>Bem Vindo a sala:$sala<br></div>";
 			
 			$jogsNome=pegarNomesJogs($sala);
-			exibirJogadores($jogsNome,$qtdJogadores);
+			exibirJogadores($nome,$sala,$jogsNome,$qtdJogadores);
+			if($id!=0)
+				exibirEntrar($jogsNome,$nome,$id,$sala);
 			
 			function pegaQtdJogadores($sala)
 			{
@@ -55,7 +58,7 @@
 				return $jogsNome;
 			}
 			
-			function exibirJogadores($jogsNome,$qtdJogadores)
+			function exibirJogadores($nome,$sala,$jogsNome,$qtdJogadores)
 			{
 
 				if($qtdJogadores==4)
@@ -64,21 +67,21 @@
 					if($jogsNome[1]!="")
 						echo "<div class='msgGrande'>".$jogsNome[1]."<br>";
 					else
-						echo "<input type='button' class='bt_importante' value='entrar'/>";
+						echo "<input type='button' class='bt_importante' value='entrar' onclick='enviar(\"$nome\",\"1\",\"$sala\");'/>";
 					if($jogsNome[3]!="")
 						echo $jogsNome[3]."<br></div>";
 					else
-						echo "<input type='button' class='bt_importante' value='entrar'/>";
+						echo "<input type='button' class='bt_importante' value='entrar' onclick='enviar(\"$nome\",\"3\",\"$sala\");'/>";
 					
 					echo "<div class='msgGrande'>Time 2:</div>";
 					if($jogsNome[2]!="")
 						echo "<div class='msgGrande'>".$jogsNome[2]."<br>";
 					else
-						echo "<input type='button' class='bt_importante' value='entrar'/>";
+						echo "<input type='button' class='bt_importante' value='entrar' onclick='enviar(\"$nome\",\"2\",\"$sala\");'/>";
 					if($jogsNome[4]!="")
 						echo $jogsNome[4]."<br></div>";
 					else
-						echo "<input type='button' class='bt_importante' value='entrar'/>";
+						echo "<input type='button' class='bt_importante' value='entrar' onclick='enviar(\"$nome\",\"4\",\"$sala\");'/>";
 					
 				}
 				if($qtdJogadores==2)
@@ -87,13 +90,13 @@
 					if($jogsNome[1]!="")
 						echo "<div class='msgGrande'>".$jogsNome[1]."</div>";
 					else
-						echo "<input type='button' class='bt_importante' value='entrar'/>";
+						echo "<input type='button' class='bt_importante' value='entrar' onclick='enviar(\"$nome\",\"1\",\"$sala\");'/>";
 					
 					echo "<div class='msgGrande'>Time 2:</div>";
 					if($jogsNome[2]!="")
 						echo "<div class='msgGrande'>".$jogsNome[2]."</div>";
 					else
-						echo "<input type='button' class='bt_importante' value='entrar'/>";
+						echo "<input type='button' class='bt_importante' value='entrar' onclick='enviar(\"$nome\",\"2\",\"$sala\");'/>";
 					
 				}
 				
@@ -139,8 +142,28 @@
 				return 1;
 			}
 			
-			
+			function exibirEntrar($jogsNome,$nome,$id,$sala)
+			{
+				for($i=1;$i<=4;$i++)
+				{
+					if($jogsNome[$i]=="")
+						return;
+				}
+				echo "<form action='truco.php'method='get'>";
+				echo "<input type='hidden' name='sala' value='$sala'/>";
+				echo "<input type='hidden' name='id'value='$id'/>";
+				if($jogsNome[1]==$nome)
+					echo "<input type='hidden' name='carta' value='-10'/>";
+				echo "<input class='bt_importante' type='submit' value='Começar Truco'/>";
+				echo "</form >";
+			}
 		?>
+		
+		<form action="entrarNaSala.php" method="post" name="formEntrar">
+			<input type="hidden" id="nome" name="nome"/>
+			<input type="hidden" id="cadeira" name="cadeira"/>
+			<input type="hidden" id="sala" name="sala"/>
+		</form>
 	</body>
 	
 

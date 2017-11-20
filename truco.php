@@ -729,7 +729,7 @@
 		echo "<input type='hidden' id='sala' value='$sala'>";
 		echo "<input type='hidden' id='id' value='$id'>";
 		echo "<input type='hidden' id='uri' value='$uri'>";
-		//echo "<script src='redirect.js'></script>";
+		echo "<script src='redirect.js'></script>";
 		
 		//voltar jg atual
 		echo "<br><a href='mesa.php?id=$id&sala=$sala'>voltar Jg Atual</a>";

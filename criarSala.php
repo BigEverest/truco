@@ -12,10 +12,9 @@
 			require("funcoes_do_banco.php");
 			
 			//verrifica se qtdJogadores é valida
-			$qtdJogadores=isset($_POST["qtdJogadores"])?$_POST["qtdJogadores"]:"0";
-			//if($qtdJogadores!=2&&$qtdJogadores!=4)
-				//return;
-			$qtdJogadores=2;
+			$qtdJogadores=isset($_POST["qtdJog"])?$_POST["qtdJog"]:"0";
+			if($qtdJogadores!=2&&$qtdJogadores!=4)
+				return;
 			//limitador de 100 salas
 			$select="SELECT id FROM `salas` ORDER BY `salas`.`id` DESC";
 			$select=(selecionarBanco($select));
@@ -81,8 +80,21 @@
 				if(mudarBanco($query)==0)
 					return;
 			}
+			//redirect
+			if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) 
+			{
+				$uri = 'https://';
+			} else {
+				$uri = 'http://';
+			}
+			$uri .= $_SERVER['HTTP_HOST'];
+			echo "<script type='text/javascript'>";
+			echo "window.location.assign('$uri/truco/lobby.php?sala=$sala');";
+			echo "</script>";
 			
 		?>
+		
+		
 	</body>
 	
 
